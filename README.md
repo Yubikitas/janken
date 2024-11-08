@@ -1,0 +1,2 @@
+# janken
+rock paper scissors 
