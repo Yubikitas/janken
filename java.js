@@ -1,7 +1,7 @@
     //Generate random whole number
     //Modulus of 3 to get one of 3 results 
     //
-    let humanScore = 0; 
+    let humanScore = 1; 
     let computerScore = 0; 
 
     function getComputerChoice(){
@@ -26,8 +26,7 @@
     }
 
     //User input of rock, paper or scissors (make sure it's case insensitive)
-    function getHumanChoice(){
-        let humanChoice = prompt("Rock, Paper or Scissors?"); 
+    function getHumanChoice(humanChoice){
         if (humanChoice.toLowerCase()=="rock"||humanChoice.toLowerCase()=="paper"||humanChoice.toLowerCase()=="scissors"){
             console.log(`You chose ${humanChoice}`); 
             return humanChoice.toLowerCase(); 
@@ -48,7 +47,12 @@
 
     function playRound(humanChoice, computerChoice){
        if(humanChoice===computerChoice){
-            console.log("It's a draw")}
+            console.log("It's a draw")
+            const newEntry = document.createElement("span");
+            
+        }
+        
+            
         else if (humanChoice==="rock" && (computerChoice==="scissors")){
             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
             humanScore++; 
@@ -72,11 +76,10 @@
     //Tabulate winner to score
     //Repeat game for 5 rounds
     function playGame(){
-        for (let i=1; i<6; i++){
+        for (let i=1; i<=5; i++){
             var humanSelection = getHumanChoice(); 
             var computerSelection = getComputerChoice(); 
             playRound(humanSelection,computerSelection); 
-
         }
         declareWinner(); 
     }
@@ -90,12 +93,36 @@
             else if (humanScore<computerScore){
                 console.log(`You lose! You only had ${humanScore} wins while the computer had ${computerScore}`);
             }
-
             else{
                 console.log(`It's a Draw! The computer and you had the same number of wins of ${humanScore}`);
             }
     }
 
-playGame();
+
+const yourScore = document.querySelector("#yourScore");
+const compScore = document.querySelector("#compScore");
 
 
+yourScore.textContent = humanScore; 
+compScore.textContent = computerScore; 
+
+let getYourChoice = document.querySelector("#choiceButtons"); 
+getYourChoice.addEventListener("click",(e) =>{
+    let target = e.target; 
+
+    switch(target.id){
+        case "rockChoice":
+
+            playRound(getHumanChoice("rock"),getComputerChoice());
+            break; 
+
+        case "paperChoice": 
+            playRound(getHumanChoice("paper"),getComputerChoice());
+            break;
+
+        case "scissorsChoice":
+            playRound(getHumanChoice("scissors"),getComputerChoice());
+            break; 
+    }
+
+});

@@ -4,10 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jankenpon</title>
+    <link rel = "stylesheet" href = "style.css">
 </head>
 <body>
+    <h1>Jankenpon!</h1>
+    <div class = "scoreSpace">
+        <div class = "yourScoreSpace">
+            <h2>Your Score</h2>
+            <span id ="yourScore"> </span>
+        </div>
+        <div class = "compScoreSpace">
+            <h2>Computer Score</h2>
+            <span id ="compScore"></span>
+        </div>
+    </div>
+
+    <div id = "choiceButtons">
+        <button id ="rockChoice">Rock</button>
+        <button id ="paperChoice">Paper</button>
+        <button id ="scissorsChoice">Scissors</button>
+    </div>
+
+    <div id = "resultsTable"> 
+        <ul>
+
+        </ul>
+
+    </div>
     
-    <script src="java.js"></script>
     
 </body>
+<script src="java.js"></script>
+
 </html>
+
