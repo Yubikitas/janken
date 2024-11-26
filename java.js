@@ -3,6 +3,7 @@
     //
     let humanScore = 0; 
     let computerScore = 0; 
+    let roundNumber = 0; 
 
     function getComputerChoice(){
         let randNumber = Math.floor(Math.random()*100); 
@@ -137,18 +138,21 @@ getYourChoice.addEventListener("click",(e) =>{
             playRound(getHumanChoice("rock"),getComputerChoice());
             yourScore.textContent = humanScore; 
             compScore.textContent = computerScore; 
+            roundNumber++; 
             break; 
 
         case "paperChoice": 
             playRound(getHumanChoice("paper"),getComputerChoice());
             yourScore.textContent = humanScore; 
             compScore.textContent = computerScore; 
+            roundNumber++; 
             break;
 
         case "scissorsChoice":
             playRound(getHumanChoice("scissors"),getComputerChoice());
             yourScore.textContent = humanScore; 
             compScore.textContent = computerScore; 
+            roundNumber++; 
             break; 
     }
 

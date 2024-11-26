@@ -4,6 +4,13 @@ h1{
     align-items: center;
 }
 
+h2{
+    display: flex; 
+    justify-content:center;
+    align-items: center;
+}
+
+
 .scoreSpace{
     display: flex; 
     flex-direction: row;
