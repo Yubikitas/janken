@@ -1,7 +1,7 @@
     //Generate random whole number
     //Modulus of 3 to get one of 3 results 
     //
-    let humanScore = 1; 
+    let humanScore = 0; 
     let computerScore = 0; 
 
     function getComputerChoice(){
@@ -48,27 +48,48 @@
     function playRound(humanChoice, computerChoice){
        if(humanChoice===computerChoice){
             console.log("It's a draw")
-            const newEntry = document.createElement("span");
-            
+            const newEntry = document.createElement("ul");
+            const resultsTable = document.querySelector("#resultsTable");
+
+            resultsTable.appendChild(newEntry);
+            newEntry.textContent = "It's a draw"; 
         }
         
             
         else if (humanChoice==="rock" && (computerChoice==="scissors")){
-            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            console.log(`You win! Your ${humanChoice} beat the computer's ${computerChoice}`);
+            const newEntry = document.createElement("ul");
+            const resultsTable = document.querySelector("#resultsTable");
+
+            resultsTable.appendChild(newEntry);
+            newEntry.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
             humanScore++; 
         }
         else if (humanChoice==="paper" && computerChoice==="rock"){
-            console.log(`You win! ${humanChoice} beats ${computerChoice}`); 
+            console.log(`You win! Your ${humanChoice} beats the computer's ${computerChoice}`); 
+            const newEntry = document.createElement("ul");
+            const resultsTable = document.querySelector("#resultsTable");
+
+            resultsTable.appendChild(newEntry);
+            newEntry.textContent = `You win! Your ${humanChoice} beat the computer's ${computerChoice}`;
             humanScore++; 
 
          }
        else if (humanChoice==="scissors" && computerChoice==="paper"){
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`); 
+        console.log(`You win! Your ${humanChoice} beat the computer's ${computerChoice}`); 
+        const newEntry = document.createElement("ul");
+        const resultsTable = document.querySelector("#resultsTable");
+        resultsTable.appendChild(newEntry);
+        newEntry.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
         humanScore++; 
 
     }
        else  {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);    
+        console.log(`You lose! Computer chose ${computerChoice} and beats your${humanChoice}`);    
+        const newEntry = document.createElement("ul");
+        const resultsTable = document.querySelector("#resultsTable");
+        resultsTable.appendChild(newEntry);
+        newEntry.textContent = `You lose! Computer's ${computerChoice} beat your ${humanChoice}`;
         computerScore++; 
     }
     }
@@ -114,14 +135,20 @@ getYourChoice.addEventListener("click",(e) =>{
         case "rockChoice":
 
             playRound(getHumanChoice("rock"),getComputerChoice());
+            yourScore.textContent = humanScore; 
+            compScore.textContent = computerScore; 
             break; 
 
         case "paperChoice": 
             playRound(getHumanChoice("paper"),getComputerChoice());
+            yourScore.textContent = humanScore; 
+            compScore.textContent = computerScore; 
             break;
 
         case "scissorsChoice":
             playRound(getHumanChoice("scissors"),getComputerChoice());
+            yourScore.textContent = humanScore; 
+            compScore.textContent = computerScore; 
             break; 
     }
 
