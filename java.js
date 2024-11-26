@@ -63,7 +63,7 @@
             const resultsTable = document.querySelector("#resultsTable");
 
             resultsTable.appendChild(newEntry);
-            newEntry.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
+            newEntry.textContent = `You win! Your ${humanChoice} beats the computer's ${computerChoice}`;
             humanScore++; 
         }
         else if (humanChoice==="paper" && computerChoice==="rock"){
@@ -81,7 +81,7 @@
         const newEntry = document.createElement("ul");
         const resultsTable = document.querySelector("#resultsTable");
         resultsTable.appendChild(newEntry);
-        newEntry.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
+        newEntry.textContent = `You win! Your ${humanChoice} beats the computer's ${computerChoice}`;
         humanScore++; 
 
     }
@@ -95,28 +95,73 @@
     }
     }
 
-    //Tabulate winner to score
-    //Repeat game for 5 rounds
-    function playGame(){
-        for (let i=1; i<=5; i++){
-            var humanSelection = getHumanChoice(); 
-            var computerSelection = getComputerChoice(); 
-            playRound(humanSelection,computerSelection); 
-        }
-        declareWinner(); 
-    }
-
+    
     //Check who has more points and declare winner 
 
     function declareWinner(){
         if (humanScore>computerScore){
-            console.log(`Congrats, you won! You had ${humanScore} wins while the computer had ${computerScore}`);
+            const newEntry = document.createElement("ul");
+            const newRound = document.createElement("button");
+            const resultsTable = document.querySelector("#resultsTable");
+            resultsTable.appendChild(newEntry);
+            newRound.textContent = "Retry"
+            newEntry.textContent = `Congrats, you won! You had ${humanScore} wins while the computer only had ${computerScore}`;
+            resultsTable.appendChild(newRound);
+
+            humanScore = 0; 
+            computerScore = 0; 
+            roundNumber = 0; 
+
+            newRound.addEventListener("click",()=>{
+        
+                resultsTable.textContent = ''
+                yourScore.textContent = humanScore;
+                compScore.textContent = computerScore;
+            }); 
+            console.log(`Congrats, you won the match! You had ${humanScore} wins while the computer had ${computerScore}`);
         }
             else if (humanScore<computerScore){
-                console.log(`You lose! You only had ${humanScore} wins while the computer had ${computerScore}`);
+                const newEntry = document.createElement("ul");
+                const newRound = document.createElement("button");
+
+                const resultsTable = document.querySelector("#resultsTable");
+                resultsTable.appendChild(newEntry);
+                resultsTable.appendChild(newRound);
+                newRound.textContent = "Retry"
+                newEntry.textContent = `You lose the match! You only had ${humanScore} wins while the computer had ${computerScore}`;
+                humanScore = 0; 
+                computerScore = 0; 
+                roundNumber = 0; 
+
+                newRound.addEventListener("click",()=>{
+        
+                    resultsTable.textContent = ''
+                    yourScore.textContent = humanScore;
+                    compScore.textContent = computerScore;
+                }); 
+                console.log(`You lose the match! You only had ${humanScore} wins while the computer had ${computerScore}`);
             }
             else{
-                console.log(`It's a Draw! The computer and you had the same number of wins of ${humanScore}`);
+                const newEntry = document.createElement("ul");
+                const newRound = document.createElement("button");
+                const resultsTable = document.querySelector("#resultsTable");
+                resultsTable.appendChild(newEntry);
+                resultsTable.appendChild(newRound);
+                newRound.textContent = "Retry"
+                newEntry.textContent = `It's a Draw! The computer and you had the same number of wins of ${humanScore}`;
+                humanScore = 0; 
+                computerScore = 0; 
+                roundNumber = 0;
+
+                newRound.addEventListener("click",()=>{
+        
+                    resultsTable.textContent = ''
+                    yourScore.textContent = humanScore;
+                    compScore.textContent = computerScore;  
+
+                }); 
+
+                console.log(`It's a drawn match! The computer and you had the same number of wins of ${humanScore}`);
             }
     }
 
@@ -139,6 +184,12 @@ getYourChoice.addEventListener("click",(e) =>{
             yourScore.textContent = humanScore; 
             compScore.textContent = computerScore; 
             roundNumber++; 
+
+                if(roundNumber==5){
+                    declareWinner(); 
+        
+                }
+            
             break; 
 
         case "paperChoice": 
@@ -146,6 +197,10 @@ getYourChoice.addEventListener("click",(e) =>{
             yourScore.textContent = humanScore; 
             compScore.textContent = computerScore; 
             roundNumber++; 
+
+            if(roundNumber==5){
+                declareWinner(); 
+            }
             break;
 
         case "scissorsChoice":
@@ -153,7 +208,12 @@ getYourChoice.addEventListener("click",(e) =>{
             yourScore.textContent = humanScore; 
             compScore.textContent = computerScore; 
             roundNumber++; 
+
+            if(roundNumber==5){
+                declareWinner(); 
+            } 
             break; 
+        
     }
 
 });
